@@ -182,7 +182,7 @@ The easiest way to copy the playbooks is to use Git:
 $ cd /etc/ansible
 $ mkdir files
 $ git clone https://github.com/changtb/ELK-Project.git # Clone repository with IaC files
-$ cp ELK-Project/ansible/* . # Copy playbooks into `/etc/ansible`
+$ cp ELK-Project/ansible/* . # Copy playbooks into /etc/ansible
 $ cp ELK-Project/files/* ./files # Copy filebeat and metricbeat configurations into /etc/ansible/files
 ```
 The `etc/ansible/files/filebeat-config.yml` has Elasticsearch output connecting to our ELK server on `10.1.0.4`. If your ELK server IP differs, change it accordingly (line 1105).
