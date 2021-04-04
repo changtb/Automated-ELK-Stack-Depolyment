@@ -53,13 +53,13 @@ A summary of the access policies in place can be found in the table below.
 
 ### Elk Configuration
 
-Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because human errors and inconsistencies with manual configuration are removed when configuration is defined as code. Additionally, the labor cost with manual configuration is removed via automation. These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above, or alternatively, select files may be used to install only certain pieces of it, such as Filebeat.
+Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because human errors and inconsistencies with manual configuration are removed when configuration is defined as code. Additionally, the labor cost with manual configuration is removed via automation. The files in this repo have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above, or alternatively, select files may be used to install only certain pieces of it, such as Filebeat.
 
 The `install_elk.yml` playbook implements the following tasks:
 - Increase virtual memory to avoid out of memory exceptions
 - Install docker.io
 - Install pip3
-- Install Docker python module
+- Install docker python module
 - Download and launch a docker elk container
 - Enable service docker on boot
 
@@ -128,7 +128,7 @@ The following Beats are installed on these machines and allow us to collect the 
 - **Filebeat**: Filebeat detects changes to the filesystem. Specifically, we use it to collect Apache logs.
 - **Metricbeat**: Metricbeat detects changes in system metrics, such as CPU usage. We use it to detect SSH login attempts, failed `sudo` escalations, and CPU/RAM statistics.
 
-The playbook below installs Metricbeat on the DVWA hosts. The playbook for installing Filebeat is included, and looks essentially identical — simply replace `metricbeat` with `filebeat`, and it will work as expected.
+The playbook below installs Metricbeat on the DVWA hosts. The playbook for installing Filebeat looks essentially identical — simply replace `metricbeat` with `filebeat`, and it will work as expected.
 
 ```yaml
 ---
