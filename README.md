@@ -31,7 +31,7 @@ The configuration details of each machine may be found below.
 
 The network is depicted below.
 
-![](https://github.com/changtb/ELK-Project/blob/main/Diagrams/ELK-Project-Diagram.png)
+![](diagrams/ELK-Project-Diagram.png)
 
 ### Access Policies
 
