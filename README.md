@@ -122,7 +122,7 @@ The following screenshot displays the result of running `docker ps` after succes
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
-- DVWA Web-1, DVWA Web-2 VMs, and DVWA Web-3 at 10.0.0.5, 10.0.0.6, and 10.0.0.7 respectively. _Note your private IPs may differ._
+- DVWA Web-1, DVWA Web-2, and DVWA Web-3 VMs at 10.0.0.5, 10.0.0.6, and 10.0.0.7 respectively. _Note your private IPs may differ._
 
 The following Beats are installed on these machines and allow us to collect the following information from each machine:
 - **Filebeat**: Filebeat detects changes to the filesystem. Specifically, we use it to collect Apache logs.
@@ -181,16 +181,14 @@ The easiest way to copy the playbooks is to use Git:
 ```bash
 $ cd /etc/ansible
 $ mkdir files
-# Clone Repository + IaC Files
-$ git clone https://github.com/changtb/ELK-Project.git
-# Move Playbooks and hosts file Into `/etc/ansible`
-$ cp ELK-Project/Ansible/* .
-$ cp project-1/files/* ./files
+$ git clone https://github.com/changtb/ELK-Project.git #Clone Repository + IaC Files
+$ cp ELK-Project/Ansible/* . #Move Playbooks and hosts file into `/etc/ansible`
+$ cp ELK-Project/files/* ./files
 ```
+The `etc/ansible/files/filebeat-config.yml` has Elasticsearch output connecting to our ELK host on `10.1.0.4`. If your ELK host IP differs, change it accordingly (line 1105).
+![](/images/filebeat-config-1.PNG)
 
-This copies the playbook files to the correct place.
-
-Next, you must create a `hosts` file to specify which VMs to run each playbook on. Run the commands below _after replacing IPs with the private IPs defined in your VMs._:
+Next, create a `hosts` file to specify which VMs to run each playbook on. Run the commands below _after replacing IPs with the private IPs defined in your VMs._:
 
 ```bash
 $ cd /etc/ansible
@@ -205,14 +203,14 @@ $ cat > hosts <<EOF
 EOF
 ```
 
-After this, the commands below run the playbook:
+Then run the playbooks:
 
  ```bash
  $ cd /etc/ansible
- $ ansible-playbook install pentest.yml #nstall Docker and configure VMs with the DVWA web app
- $ ansible-playbook install_elk.yml
+ $ ansible-playbook pentest.yml #Install Docker and configure VMs with the DVWA web app
+ $ ansible-playbook install_elk.yml #Install ELK stack logging tool
  $ ansible-playbook install_filebeat.yml
- $ ansible-playbook install_metricbeat.yml
+ $ ansible-playbook install_metricbeat.yml 
  ```
 
 To verify success, wait five minutes to give ELK time to start up. 
