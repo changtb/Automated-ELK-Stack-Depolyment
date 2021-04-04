@@ -1,11 +1,9 @@
 ## Automated ELK Stack Deployment
 
 The files in this repository were used to configure the network depicted below.
-
 ![alt text](https://github.com/changtb/ELK-Project/blob/main/Diagrams/ELK-Project-Diagram.png "Logo Title Text 1")
 
-
-These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the install_elk.yml file may be used to install only certain pieces of it, such as Filebeat.
+These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above, or alternatively, select files may be used to install only certain pieces of it, such as Filebeat.
 
 ```yaml
 ---
@@ -72,29 +70,27 @@ This document contains the following details:
 
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
-Load balancing ensures that the application will be highly available, in addition to restricting inbound access to the network.
--  The load balancer ensures that work to process incoming traffic will be shared by both vulnerable web servers. Access controls will ensure that only authorized users — namely, ourselves — will be able to connect in the first place. The additional use of a jump box provides a controlled means of access to manage our VMs in separate security zones.
+Load balancing ensures that the application will be highly available, in addition to restricting inbound access to the network. The load balancer ensures that work to process incoming traffic will be shared by both vulnerable web servers. Access controls will ensure that only authorized users — namely, ourselves — will be able to connect in the first place. The additional use of a jump box provides a controlled means of access to manage our VMs in separate security zones.
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the file systems of the VMs on the network and system metrics, such as CPU usage; attempted SSH logins; sudo escalation failures; etc.
 - **Filebeat** collects data about the file system.
 - **Metricbeat** collects machine metrics, such as uptime.
 
 The configuration details of each machine may be found below.
-_Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
 
 | Name     | Function   | IP Address | Operating System |
 |----------|------------|------------|------------------|
 | Jump Box | Gateway    | 10.0.0.4   | Linux            |
 | DVWA 1   | Web Server | 10.0.0.5   | Linux            |
 | DVWA 2   | Web Server | 10.0.0.6   | Linux            |
+| DVWA 3   | Web Server | 10.0.0.7   | Linux            |
 | ELK      | Monitoring | 10.1.0.4   | Linux            |
 
 ### Access Policies
 
 The machines on the internal network are not exposed to the public Internet. 
 
-Only the jump box machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
-- 24.155.109.125
+Only the jump box machine can accept connections from the Internet. Access to this machine is only allowed from your local host IP address.
 
 Machines within the network can only be accessed by each other.
 - The DVWA 1 and DVWA 2 VMs send traffic to the ELK server.
@@ -106,12 +102,12 @@ A summary of the access policies in place can be found in the table below.
 | Jump Box | Yes                 | 24.155.109.125       |
 | DVWA 1   | No                  | 10.0.0.1-254         |
 | DVWA 2   | No                  | 10.0.0.1-254         |
+| DVWA 3   | No                  | 10.0.0.1-254         |
 | ELK      | No                  | 10.0.0.1-254         |
 
 ### Elk Configuration
 
-Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because...
-- Human errors in manual configuration are removed when configuration is defined as code. Additionally, the labor cost with manual configuration is removed by automation.
+Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because human errors and inconsistencies with manual configuration are removed when configuration is defined as code. Additionally, the labor cost with manual configuration is removed via automation.
 
 The playbook implements the following tasks:
 - Install docker.io
@@ -122,8 +118,7 @@ The playbook implements the following tasks:
 - Enable service docker on boot
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
-
-![TODO: Update the path with the name of your screenshot of docker ps output](Images/docker-ps-elk.png)
+(Images/docker-ps-elk.png)
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
