@@ -122,7 +122,7 @@ The following screenshot displays the result of running `docker ps` after succes
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
-- DVWA Web-1, DVWA Web-2, and DVWA Web-3 VMs at 10.0.0.5, 10.0.0.6, and 10.0.0.7 respectively. _Note your private IPs may differ._
+- DVWA Web-1, DVWA Web-2, and DVWA Web-3 VMs at 10.0.0.5, 10.0.0.6, and 10.0.0.7 respectively. _Note your IPs may differ._
 
 The following Beats are installed on these machines and allow us to collect the following information from each machine:
 - **Filebeat**: Filebeat detects changes to the filesystem. Specifically, we use it to collect Apache logs.
@@ -181,12 +181,15 @@ The easiest way to copy the playbooks is to use Git:
 ```bash
 $ cd /etc/ansible
 $ mkdir files
-$ git clone https://github.com/changtb/ELK-Project.git #Clone Repository + IaC Files
-$ cp ELK-Project/Ansible/* . #Move Playbooks and hosts file into `/etc/ansible`
-$ cp ELK-Project/files/* ./files
+$ git clone https://github.com/changtb/ELK-Project.git #Clone repository with IaC files
+$ cp ELK-Project/Ansible/* . #Move playbooks into `/etc/ansible`
+$ cp ELK-Project/files/* ./files #Move filebeat and metricbeat configurations into /etc/ansible/files
 ```
-The `etc/ansible/files/filebeat-config.yml` has Elasticsearch output connecting to our ELK host on `10.1.0.4`. If your ELK host IP differs, change it accordingly (line 1105).
+The `etc/ansible/files/filebeat-config.yml` has Elasticsearch output connecting to our ELK server on `10.1.0.4`. If your ELK server IP differs, change it accordingly (line 1105).
 ![](/images/filebeat-config-1.PNG)
+
+Additionally, the Kibana endpoint configuration is set to `10.1.0.4` (line 1805) in `etc/ansible/files/filebeat-config.yml`. Change this to the IP address of your ELK server.
+![](/images/filebeat-config-2.PNG)
 
 Next, create a `hosts` file to specify which VMs to run each playbook on. Run the commands below _after replacing IPs with the private IPs defined in your VMs._:
 
