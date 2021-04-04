@@ -209,6 +209,7 @@ After this, the commands below run the playbook:
 
  ```bash
  $ cd /etc/ansible
+ $ ansible-playbook install pentest.yml #nstall Docker and configure VMs with the DVWA web app
  $ ansible-playbook install_elk.yml
  $ ansible-playbook install_filebeat.yml
  $ ansible-playbook install_metricbeat.yml
