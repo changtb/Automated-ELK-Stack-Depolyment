@@ -19,7 +19,7 @@ The additional use of a jump box provides a controlled means of access to manage
 
 Integrating an ELK server allows monitoring of the vulnerable VMs for file system changes and system metrics.
 
-The configuration details of each machine may be found below.
+The configuration details of each machine may be found below. _Note your IPs may differ._
 
 | Name     | Function   | IP Address | Operating System |
 |----------|------------|------------|------------------|
