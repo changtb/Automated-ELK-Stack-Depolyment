@@ -4,8 +4,7 @@ This document contains the following details:
 - Description of the Topology
 - Access Policies
 - ELK Configuration
-  - Beats in Use
-  - Machines Being Monitored
+- Target Machines & Beats
 - How to Use the Ansible Build
 
 ### Description of the Topology
@@ -122,16 +121,15 @@ The following screenshot displays the result of running `docker ps` after succes
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
-- DVWA 1 and DVWA 2 VMs, at 10.0.0.5 and 10.0.0.6, respectively
+- DVWA Web-1, DVWA Web-2 VMs, and DVWA Web-3 at 10.0.0.5, 10.0.0.6, and 10.0.0.7 respectively.
 
-We have installed the following Beats on these machines:
+The following Beats are installed on these machines:
 - Filebeat
 - Metricbeat
 
 These Beats allow us to collect the following information from each machine:
 - **Filebeat**: Filebeat detects changes to the filesystem. Specifically, we use it to collect Apache logs.
 - **Metricbeat**: Metricbeat detects changes in system metrics, such as CPU usage. We use it to detect SSH login attempts, failed `sudo` escalations, and CPU/RAM statistics.
-- **Packetbeat**: Packetbeat collects packets that pass through the NIC, similar to Wireshark. We use it to generate a trace of all activity that takes place on the network, in case later forensic analysis should be warranted.
 
 The playbook below installs Metricbeat on the target hosts. The playbook for installing Filebeat is included, and looks essentially identical — simply replace `metricbeat` with `filebeat`, and it will work as expected.
 
@@ -174,7 +172,7 @@ The playbook below installs Metricbeat on the target hosts. The playbook for ins
       enabled: yes
 ```
 
-### Using the Playbook
+### How to Use the Ansible Build
 In order to use the playbooks, you will need to have an Ansible control node already configured. We use the **jump box** for this purpose.
 
 To use the playbooks, we must perform the following steps:
