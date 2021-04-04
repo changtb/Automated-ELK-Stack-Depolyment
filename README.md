@@ -17,9 +17,7 @@ Access controls will ensure that only authorized users — namely, ourselves —
 
 The additional use of a jump box provides a controlled means of access to manage our VMs in separate security zones.
 
-Integrating an ELK server allows monitoring of the vulnerable VMs for file system changes and system metrics - e.g. CPU usage, attempted SSH logins, or sudo escalation failures.
-- **Filebeat** collects data about the file system.
-- **Metricbeat** collects machine metrics, such as uptime.
+Integrating an ELK server allows monitoring of the vulnerable VMs for file system changes and system metrics.
 
 The configuration details of each machine may be found below.
 
@@ -42,7 +40,7 @@ The machines on the internal network are not exposed to the public Internet.
 Only the jump box machine can accept connections from the Internet. Access to this machine is only allowed from your local host public IP address after configuring the network security rules to allow SSH from your local host public IP.
 
 Machines within the network can only be accessed by each other.
-- The DVWA 1 and DVWA 2 VMs send traffic to the ELK server.
+- The DVWA Web-1, DVWA Web-2, and DVWA Web-3 VMs send traffic to the ELK server.
 
 A summary of the access policies in place can be found in the table below.
 
@@ -127,15 +125,11 @@ The following screenshot displays the result of running `docker ps` after succes
 This ELK server is configured to monitor the following machines:
 - DVWA Web-1, DVWA Web-2 VMs, and DVWA Web-3 at 10.0.0.5, 10.0.0.6, and 10.0.0.7 respectively.
 
-The following Beats are installed on these machines:
-- Filebeat
-- Metricbeat
-
-These Beats allow us to collect the following information from each machine:
+The following Beats are installed on these machines and allow us to collect the following information from each machine:
 - **Filebeat**: Filebeat detects changes to the filesystem. Specifically, we use it to collect Apache logs.
 - **Metricbeat**: Metricbeat detects changes in system metrics, such as CPU usage. We use it to detect SSH login attempts, failed `sudo` escalations, and CPU/RAM statistics.
 
-The playbook below installs Metricbeat on the target hosts. The playbook for installing Filebeat is included, and looks essentially identical — simply replace `metricbeat` with `filebeat`, and it will work as expected.
+The playbook below installs Metricbeat on the DVWA hosts. The playbook for installing Filebeat is included, and looks essentially identical — simply replace `metricbeat` with `filebeat`, and it will work as expected.
 
 ```yaml
 ---
