@@ -39,8 +39,7 @@ The machines on the internal network are not exposed to the public Internet.
 
 Only the jump box machine can accept connections from the Internet. Access to this machine is only allowed from your local host public IP address after configuring the network security rules to allow SSH from your local host public IP.
 
-Machines within the network can only be accessed by each other.
-- The DVWA Web-1, DVWA Web-2, and DVWA Web-3 VMs send traffic to the ELK server.
+Machines within the network can only be accessed by each other. The DVWA Web-1, DVWA Web-2, and DVWA Web-3 VMs send system logs to the ELK server.
 
 A summary of the access policies in place can be found in the table below.
 
@@ -123,7 +122,7 @@ The following screenshot displays the result of running `docker ps` after succes
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
-- DVWA Web-1, DVWA Web-2 VMs, and DVWA Web-3 at 10.0.0.5, 10.0.0.6, and 10.0.0.7 respectively.
+- DVWA Web-1, DVWA Web-2 VMs, and DVWA Web-3 at 10.0.0.5, 10.0.0.6, and 10.0.0.7 respectively. _Note your private IPs may differ._
 
 The following Beats are installed on these machines and allow us to collect the following information from each machine:
 - **Filebeat**: Filebeat detects changes to the filesystem. Specifically, we use it to collect Apache logs.
@@ -191,7 +190,7 @@ $ cp project-1/files/* ./files
 
 This copies the playbook files to the correct place.
 
-Next, you must create a `hosts` file to specify which VMs to run each playbook on. Run the commands below:
+Next, you must create a `hosts` file to specify which VMs to run each playbook on. Run the commands below _after replacing IPs with the private IPs defined in your VMs._:
 
 ```bash
 $ cd /etc/ansible
