@@ -181,15 +181,17 @@ The easiest way to copy the playbooks is to use Git:
 ```bash
 $ cd /etc/ansible
 $ mkdir files
-$ git clone https://github.com/changtb/ELK-Project.git #Clone repository with IaC files
-$ cp ELK-Project/Ansible/* . #Move playbooks into `/etc/ansible`
-$ cp ELK-Project/files/* ./files #Move filebeat and metricbeat configurations into /etc/ansible/files
+$ git clone https://github.com/changtb/ELK-Project.git # Clone repository with IaC files
+$ cp ELK-Project/ansible/* . # Copy playbooks into `/etc/ansible`
+$ cp ELK-Project/files/* ./files # Copy filebeat and metricbeat configurations into /etc/ansible/files
 ```
 The `etc/ansible/files/filebeat-config.yml` has Elasticsearch output connecting to our ELK server on `10.1.0.4`. If your ELK server IP differs, change it accordingly (line 1105).
 ![](/images/filebeat-config-1.PNG)
 
 Additionally, the Kibana endpoint configuration is set to `10.1.0.4` (line 1805) in `etc/ansible/files/filebeat-config.yml`. Change this to the IP address of your ELK server.
 ![](/images/filebeat-config-2.PNG)
+
+Again, make the same ELK server IP changes to the `etc/ansible/files/metricbeat-config.yml` if needed (lines 62 and 95).
 
 Next, create a `hosts` file to specify which VMs to run each playbook on. Run the commands below _after replacing IPs with the private IPs defined in your VMs._:
 
@@ -216,6 +218,4 @@ Then run the playbooks:
  $ ansible-playbook install_metricbeat.yml 
  ```
 
-To verify success, wait five minutes to give ELK time to start up. 
-
-Then, run: `curl http://10.1.0.4:5601/app/kibana`. This is the address of Kibana. If the installation succeeded, this command should print HTML to the console.# ELK-Project
+To verify success, wait five minutes to give ELK time to start up. Then, run: `curl http://10.1.0.4:5601/app/kibana`. This is the address of Kibana. If the installation succeeded, this command should print HTML to the console.# ELK-Project
