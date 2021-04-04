@@ -218,4 +218,4 @@ Then run the playbooks:
  $ ansible-playbook install_metricbeat.yml 
  ```
 
-To verify success, wait five minutes to give ELK time to start up. Then, run: `curl http://10.1.0.4:5601/app/kibana`. This is the address of Kibana. If the installation succeeded, this command should print HTML to the console.# ELK-Project
+To verify success, wait five minutes to give ELK time to start up. Then, run: `curl http://10.1.0.4:5601/app/kibana`. This is the address of Kibana. If the installation succeeded, this command should print HTML to the console.
