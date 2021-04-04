@@ -181,9 +181,9 @@ The easiest way to copy the playbooks is to use Git:
 ```bash
 $ cd /etc/ansible
 $ mkdir files
-$ git clone https://github.com/changtb/ELK-Project.git # Clone repository with IaC files
-$ cp ELK-Project/ansible/* . # Copy playbooks into /etc/ansible
-$ cp ELK-Project/files/* ./files # Copy filebeat and metricbeat configurations into /etc/ansible/files
+$ git clone https://github.com/changtb/ELK-Project.git          # Clone repository with IaC files
+$ cp ELK-Project/ansible/* .                                    # Copy playbooks into /etc/ansible
+$ cp ELK-Project/files/* ./files                                # Copy filebeat and metricbeat configurations into /etc/ansible/files
 ```
 The `etc/ansible/files/filebeat-config.yml` has Elasticsearch output connecting to our ELK server on `10.1.0.4`. If your ELK server IP differs, change it accordingly (line 1105).
 ![](/images/filebeat-config-1.PNG)
@@ -212,8 +212,8 @@ Then run the playbooks:
 
  ```bash
  $ cd /etc/ansible
- $ ansible-playbook pentest.yml #Install Docker and configure VMs with the DVWA web app
- $ ansible-playbook install_elk.yml #Install ELK stack logging tool
+ $ ansible-playbook pentest.yml                   # Install Docker and configure VMs with the DVWA web app
+ $ ansible-playbook install_elk.yml               # Install ELK stack logging tool
  $ ansible-playbook install_filebeat.yml
  $ ansible-playbook install_metricbeat.yml 
  ```
