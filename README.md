@@ -1,9 +1,38 @@
 ## Automated ELK Stack Deployment
 
-The files in this repository were used to configure the network depicted below.
-![alt text](https://github.com/changtb/ELK-Project/blob/main/Diagrams/ELK-Project-Diagram.png)
+This document contains the following details:
+- Description of the Topology
+- Access Policies
+- ELK Configuration
+  - Beats in Use
+  - Machines Being Monitored
+- How to Use the Ansible Build
 
-These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above, or alternatively, select files may be used to install only certain pieces of it, such as Filebeat.
+### Description of the Topology
+
+The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
+
+Load balancing ensures that the application will be highly available, in addition to restricting inbound access to the network. The load balancer ensures that work to process incoming traffic will be shared by both vulnerable web servers. Access controls will ensure that only authorized users — namely, ourselves — will be able to connect in the first place. The additional use of a jump box provides a controlled means of access to manage our VMs in separate security zones.
+
+Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the file systems of the VMs on the network and system metrics, such as CPU usage; attempted SSH logins; sudo escalation failures; etc.
+- **Filebeat** collects data about the file system.
+- **Metricbeat** collects machine metrics, such as uptime.
+
+The configuration details of each machine may be found below.
+
+| Name     | Function   | IP Address | Operating System |
+|----------|------------|------------|------------------|
+| Jump Box | Gateway    | 10.0.0.4   | Linux            |
+| DVWA 1   | Web Server | 10.0.0.5   | Linux            |
+| DVWA 2   | Web Server | 10.0.0.6   | Linux            |
+| DVWA 3   | Web Server | 10.0.0.7   | Linux            |
+| ELK      | Monitoring | 10.1.0.4   | Linux            |
+
+The files in this repository were used to configure the network depicted below.
+
+![](https://github.com/changtb/ELK-Project/blob/main/Diagrams/ELK-Project-Diagram.png)
+
+These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above, or alternatively, select files may be used to install only certain pieces of it, such as Filebeat. The following is the Ansible playbook for installing ELK:
 
 ```yaml
 ---
@@ -57,40 +86,11 @@ These files have been tested and used to generate a live ELK deployment on Azure
           enabled: yes
 ```
 
-This document contains the following details:
-- Description of the Topology
-- Access Policies
-- ELK Configuration
-  - Beats in Use
-  - Machines Being Monitored
-- How to Use the Ansible Build
-
-
-### Description of the Topology
-
-The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
-
-Load balancing ensures that the application will be highly available, in addition to restricting inbound access to the network. The load balancer ensures that work to process incoming traffic will be shared by both vulnerable web servers. Access controls will ensure that only authorized users — namely, ourselves — will be able to connect in the first place. The additional use of a jump box provides a controlled means of access to manage our VMs in separate security zones.
-
-Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the file systems of the VMs on the network and system metrics, such as CPU usage; attempted SSH logins; sudo escalation failures; etc.
-- **Filebeat** collects data about the file system.
-- **Metricbeat** collects machine metrics, such as uptime.
-
-The configuration details of each machine may be found below.
-
-| Name     | Function   | IP Address | Operating System |
-|----------|------------|------------|------------------|
-| Jump Box | Gateway    | 10.0.0.4   | Linux            |
-| DVWA 1   | Web Server | 10.0.0.5   | Linux            |
-| DVWA 2   | Web Server | 10.0.0.6   | Linux            |
-| DVWA 3   | Web Server | 10.0.0.7   | Linux            |
-| ELK      | Monitoring | 10.1.0.4   | Linux            |
-
 ### Access Policies
 
 The machines on the internal network are not exposed to the public Internet. 
 
-Only the jump box machine can accept connections from the Internet. Access to this machine is only allowed from your local host IP address.
+Only the jump box machine can accept connections from the Internet. Access to this machine is only allowed from your local host public IP address after configuring the network security rules to allow SSH from your local host public IP.
 
 Machines within the network can only be accessed by each other.
 - The DVWA 1 and DVWA 2 VMs send traffic to the ELK server.
@@ -99,7 +99,7 @@ A summary of the access policies in place can be found in the table below.
 
 | Name     | Publicly Accessible | Allowed IP Addressed |
 |----------|---------------------|----------------------|
-| Jump Box | Yes                 | 24.155.109.125       |
+| Jump Box | Yes                 | your local host IP   |
 | DVWA 1   | No                  | 10.0.0.1-254         |
 | DVWA 2   | No                  | 10.0.0.1-254         |
 | DVWA 3   | No                  | 10.0.0.1-254         |
