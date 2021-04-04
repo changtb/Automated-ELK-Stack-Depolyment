@@ -56,10 +56,10 @@ A summary of the access policies in place can be found in the table below.
 Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because human errors and inconsistencies with manual configuration are removed when configuration is defined as code. Additionally, the labor cost with manual configuration is removed via automation. These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above, or alternatively, select files may be used to install only certain pieces of it, such as Filebeat.
 
 The `install_elk.yml` playbook implements the following tasks:
+- Increase virtual memory to avoid out of memory exceptions
 - Install docker.io
 - Install pip3
 - Install Docker python module
-- Use more memory
 - Download and launch a docker elk container
 - Enable service docker on boot
 
